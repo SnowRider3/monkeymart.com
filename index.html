@@ -1,31 +1,262 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Monkey Mart Clone</title>  
-    <script src="https://cdn.tailwindcss.com"></script>  
-</head>  
-<body class="bg-gradient-to-br from-green-600 to-teal-500 text-white">  
-    <header class="p-6 text-center">  
-        <h1 class="text-5xl font-bold mb-4">Welcome to Monkey Mart!</h1>  
-        <p class="text-lg">Build your supermarket empire. Serve customers, stock shelves, and expand your store!</p>  
-    </header>  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monkey Mart và Những Trò Chơi Khác</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
 
-    <main class="flex flex-col justify-center items-center mt-10">  
-        <!-- Image -->  
-        <div class="max-w-sm mb-6">  
-            <img src="https://api.placeholder.pics/svg/400x300/FFD700-FFFFFF/play-now" alt="Monkey Mart Gameplay" class="rounded-lg shadow-md">  
-        </div>  
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
 
-        <!-- Play Now Button -->  
-        <a href="game.html" class="bg-yellow-400 text-black px-8 py-4 text-lg font-bold uppercase rounded-lg hover:bg-yellow-500 transition-transform hover:translate-y-1 shadow-md">  
-            Play Now!  
-        </a>  
-    </main>  
+      /* Top Logo Bar */
+      .top-logo-bar {
+        background-color: #333;
+        padding: 10px 0;
+        text-align: center;
+      }
 
-    <footer class="absolute bottom-0 w-full p-4 text-center bg-green-800 text-white">  
-        <p>Created as a clone of Monkey Mart | 2025</p>  
-    </footer>  
-</body>  
-</html>  
+      .logo {
+        height: 60px;
+        width: auto;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: #4caf50;
+        color: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      nav {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      nav a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      /* Main Content Styles */
+      main {
+        flex: 1;
+        padding: 2rem;
+        background-color: #f4f4f4;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .game-container {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+
+      iframe {
+        width: 100%;
+        height: 600px;
+        border: none;
+        border-radius: 5px;
+      }
+
+      .other-games {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        padding: 1rem 0;
+      }
+
+      .game-card {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .game-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .game-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+
+      .game-info {
+        padding: 1rem;
+      }
+
+      .game-info h3 {
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .game-info p {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      /* Footer Styles */
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 1.5rem 0;
+        margin-top: auto;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+      }
+
+      .footer-content p {
+        margin: 0;
+      }
+
+      .social-links a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s;
+      }
+
+      .social-links a:hover {
+        color: #4caf50;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header-container {
+          flex-direction: column;
+          text-align: center;
+          gap: 1rem;
+        }
+
+        nav {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Top Logo Bar -->
+    <div class="top-logo-bar">
+      <img src="/monkey-mart.png" alt="Website Logo" class="logo" />
+    </div>
+
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <h1>Monkey Mart Games</h1>
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#games">Games</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="game-container">
+        <iframe
+          src="https://ubggo.github.io/ub-games/monkeymart/"
+          title="Monkey Mart"
+        ></iframe>
+      </div>
+
+      <h2>More Games</h2>
+      <div class="other-games">
+        <!-- Game Card 1 -->
+        <div class="game-card">
+          <a href="http://127.0.0.1:5500/game.html"</a>
+          <img src="/thumbnails-monkey.png" alt="Game 1" />
+          <div class="game-info">
+            <h3>Adventure Game</h3>
+            <p>Explore amazing worlds and complete exciting missions.</p>
+          </div>
+        </div>
+
+        <!-- Game Card 2 -->
+        <div class="game-card">
+          <img src="https://via.placeholder.com/300x150" alt="Game 2" />
+          <div class="game-info">
+            <h3>Puzzle Master</h3>
+            <p>Test your brain with challenging puzzles.</p>
+          </div>
+        </div>
+
+        <!-- Game Card 3 -->
+        <div class="game-card">
+          <img src="https://via.placeholder.com/300x150" alt="Game 3" />
+          <div class="game-info">
+            <h3>Racing Stars</h3>
+            <p>Race against time in amazing tracks.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 Monkey Mart Games. All rights reserved.</p>
+        <div class="social-links">
+          <a href="#facebook">Facebook</a>
+          <a href="#twitter">Twitter</a>
+          <a href="#instagram">Instagram</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
