@@ -1,0 +1,97 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Monkey Mart - Game</title>  
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>  
+    <style>  
+        body {  
+            margin: 0;  
+            padding: 0;  
+            overflow: hidden;  
+        }  
+        canvas {  
+            display: block;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <script>  
+        const config = {  
+            type: Phaser.AUTO,  
+            width: 800,  
+            height: 600,  
+            backgroundColor: '#D0F0C0',  
+            physics: {  
+                default: 'arcade',  
+                arcade: {  
+                    gravity: { y: 0 },  
+                    debug: false,  
+                }  
+            },  
+            scene: {  
+                preload: preload,  
+                create: create,  
+                update: update  
+            }  
+        };  
+
+        // Initialize the game with the config  
+        const game = new Phaser.Game(config);  
+
+        let player, cursors, shelves, customers;  
+
+        function preload() {  
+            this.load.image('background', 'https://api.placeholder.pics/svg/800x600/9EE493-F2FFB7/supermarket');  
+            this.load.image('player', 'https://api.placeholder.pics/svg/48x48/FFD700-000/player');  
+            this.load.image('shelf', 'https://api.placeholder.pics/svg/120x30/C0C0C0-FFFFFF/shelf');  
+            this.load.image('customer', 'https://api.placeholder.pics/svg/48x48/FF5733-FFFFFF/customer');  
+        }  
+
+        function create() {  
+            // Add static background  
+            this.add.image(400, 300, 'background');  
+
+            // Initialize the player character  
+            player = this.physics.add.sprite(400, 500, 'player');  
+            player.setCollideWorldBounds(true);  
+
+            // Create shelves for stocking goods  
+            shelves = this.physics.add.staticGroup();  
+            for (let i = 0; i < 3; i++) {  
+                shelves.create(300 + i * 150, 300, 'shelf');  
+            }  
+
+            // Spawn a couple of customers  
+            customers = this.physics.add.group();  
+            for (let i = 0; i < 2; i++) {  
+                const customer = customers.create(200 + i * 250, 100, 'customer');  
+                customer.setBounce(1).setCollideWorldBounds(true);  
+            }  
+
+            // Enable inputs for the player  
+            cursors = this.input.keyboard.createCursorKeys();  
+        }  
+
+        function update() {  
+            // Handle player movement  
+            if (cursors.left.isDown) {  
+                player.setVelocityX(-200);  
+            } else if (cursors.right.isDown) {  
+                player.setVelocityX(200);  
+            } else {  
+                player.setVelocityX(0);  
+            }  
+
+            if (cursors.up.isDown) {  
+                player.setVelocityY(-200);  
+            } else if (cursors.down.isDown) {  
+                player.setVelocityY(200);  
+            } else {  
+                player.setVelocityY(0);  
+            }  
+        }  
+    </script>  
+</body>  
+</html>  
